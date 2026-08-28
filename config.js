@@ -1,5 +1,4 @@
 module.exports = {
-  // Keep this pointed at a private/local practice server.
   server: {
     host: process.env.MC_HOST || 'filoox.play.hosting',
     port: Number(process.env.MC_PORT || 25565),
@@ -7,14 +6,35 @@ module.exports = {
     version: process.env.MC_VERSION || false
   },
   combat: {
-    responseMs: 120,
-    attackRange: 3.1,
-    hitSensitivity: 0.82,
-    retreatHealth: 12,
-    retargetMs: 8000,
-    maxActionRetries: 2
+    responseMs: 30,
+    attackRange: 3.5,
+    hitSensitivity: 0.95,
+    retreatHealth: 6,
+    retargetMs: 2000,
+    maxActionRetries: 3,
+    predictiveAiming: true,
+    adaptiveDifficulty: true,
+    aggressiveStyle: true,
+    comboAttacks: true,
+    criticalChance: 0.30
   },
-  potions: ['swiftness', 'strength', 'healing'],
-  allowedModes: ['aggressive', 'defensive', 'training'],
-  allowedTypes: ['sword', 'axe', 'crystal', 'bow', 'hybrid', 'sumo', 'nethpot']
+  potions: ['swiftness', 'strength', 'healing', 'fire_resistance', 'night_vision'],
+  allowedModes: ['aggressive', 'defensive', 'training', 'hardcore'],
+  allowedTypes: ['sword', 'axe', 'crystal', 'bow', 'hybrid', 'sumo', 'nethpot'],
+  ai: {
+    enabled: true,
+    reactionTime: 25,
+    strategySwitchChance: 0.20,
+    rangeAdaptation: true,
+    healthAwareness: true,
+    predictiveMovement: true,
+    strafeEnabled: true,
+    dodgeEnabled: true
+  },
+  advancedStats: {
+    trackCriticals: true,
+    trackCombos: true,
+    trackDodges: true,
+    trackHeals: true
+  }
 }
