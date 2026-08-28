@@ -1,7 +1,7 @@
 module.exports = {
   // Keep this pointed at a private/local practice server.
   server: {
-    host: process.env.MC_HOST || '127.0.0.1',
+    host: process.env.MC_HOST || 'filoox.play.hosting',
     port: Number(process.env.MC_PORT || 25565),
     username: process.env.MC_USERNAME || 'PvPTrainingBot',
     version: process.env.MC_VERSION || false
