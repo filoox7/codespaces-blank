@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>حالة البوت</title>
+    <style>
+      :root { color-scheme: light; font-family: system-ui, sans-serif; }
+      * { box-sizing: border-box; }
+      body { min-height: 100vh; margin: 0; display: grid; place-items: center; background: #eef2f5; color: #14212b; }
+      main { width: min(90vw, 520px); padding: 3rem 2rem; text-align: center; background: #fff; border: 1px solid #d7e0e6; border-radius: 8px; box-shadow: 0 18px 45px #14212b18; }
+      h1 { margin: 0 0 1.5rem; font-size: clamp(1.5rem, 5vw, 2.25rem); }
+      #status { margin: 0; font-size: clamp(1.25rem, 4vw, 1.75rem); font-weight: 700; }
+      .dot { display: inline-block; width: 0.8rem; height: 0.8rem; margin-inline-end: 0.5rem; border-radius: 50%; background: #c53b3b; }
+      .online .dot { background: #16845b; }
+    </style>
+  </head>
+  <body>
+    <main id="app">
+      <h1>حالة البوت</h1>
+      <p id="status"><span class="dot" aria-hidden="true"></span>جارٍ التحقق...</p>
+    </main>
+    <script>
+      const app = document.getElementById('app')
+      const status = document.getElementById('status')
+
+      async function refresh() {
+        try {
+          const response = await fetch('/health', { cache: 'no-store' })
+          const data = await response.json()
+          const online = data.online === true
+          app.classList.toggle('online', online)
+          status.lastChild.textContent = online ? 'البوت يعمل' : 'البوت متوقف'
+        } catch {
+          app.classList.remove('online')
+          status.lastChild.textContent = 'البوت متوقف'
+        }
+      }
+
+      refresh()
+      setInterval(refresh, 10000)
+    </script>
+  </body>
+</html>

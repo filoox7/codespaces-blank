@@ -1,0 +1,19 @@
+{
+  "name": "private-pvp-training-bot",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mineflayer bot for a private Minecraft PvP training server",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start:web": "node index.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "mineflayer": "^4.31.0",
+    "mineflayer-pathfinder": "^2.4.5"
+  }
+}
